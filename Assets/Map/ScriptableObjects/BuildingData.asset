@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cfa316787d78e4da73e9b0f134a7b0, type: 3}
+  m_Name: BuildingData
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: -3264293925793933962, guid: 223c64d09cbe1ad4ea5b8b82470e775b, type: 3}
+  BuildingTypeDictionary:
+  - BuildingType: 0
+    GameObject: {fileID: 1579347235330238737, guid: a9d3edb04d0e6c04183e5e66aa761a45,
+      type: 3}
+    UIInfoTransform: {x: -0.32, y: 2.664, z: -0.695}
+  - BuildingType: 1
+    GameObject: {fileID: 166574464727658188, guid: 6f60e7ce7cf642f4bbbfcd3ab4a460f5,
+      type: 3}
+    UIInfoTransform: {x: 0.8, y: 3.05, z: -0.25}
+  - BuildingType: 2
+    GameObject: {fileID: 166574464727658188, guid: 6f60e7ce7cf642f4bbbfcd3ab4a460f5,
+      type: 3}
+    UIInfoTransform: {x: 0.8, y: 3.05, z: -0.25}
