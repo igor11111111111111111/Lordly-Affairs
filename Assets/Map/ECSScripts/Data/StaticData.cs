@@ -7,11 +7,11 @@ namespace Map
     {
         public SquadData SquadData;
         public BuildingData BuildingData;
-        public UnitData UnitData;
+        public AllClothMesh AllClothMesh;
 
         public void Init()
         {
-            UnitData.Init();
+            AllClothMesh = new AllClothMesh();
         }
     }
 }

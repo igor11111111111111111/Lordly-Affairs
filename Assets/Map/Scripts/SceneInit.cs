@@ -21,7 +21,7 @@ namespace Map
             _ecsStartup = new EcsStartup(_staticData, _sceneData);
             _ecsStartup.Start();
             _ui.Init(_ecsStartup.EcsWorld);
-            _unitInfoUI.Init(_staticData.UnitData.Mesh);
+            _unitInfoUI.Init(_staticData.AllClothMesh);
         }
 
         private void Update()

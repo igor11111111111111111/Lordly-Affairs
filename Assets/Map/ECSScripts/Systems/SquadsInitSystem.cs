@@ -38,7 +38,8 @@ namespace Map
             squadComponent.Transform = squad.transform;
             squadComponent.NavMeshAgent = squad.NavMeshAgent;
             squadComponent.MyDomain = new List<BuildingComponent>();
-            playerModel.SkinnedMeshRenderer.sharedMesh = _staticData.SquadData.GetMeshBySocialStatus(data.SocialStatus);
+
+            playerModel.ClothChanger.Set(_staticData.SquadData.GetClothBySocialStatus(data.SocialStatus), _staticData.AllClothMesh);
 
             entity.Get<IdleState>();
             entity.Get<RefreshInfoEvent>();

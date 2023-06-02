@@ -8,15 +8,52 @@ using System;
 //
 namespace Map
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu] 
     public class SquadData : ScriptableObject
     { 
         public Squad Prefab;
-        public List<SocialStatusMeshDictionary> SocialStatusMeshDictionary;
+        [HideInInspector] public List<SocialStatusClothDictionary> SocialStatusClothDictionary;
         [HideInInspector] public List<SquadComponent> All;
 
         public void Init()
         {
+            SocialStatusClothDictionary = new List<SocialStatusClothDictionary>()
+            {
+                new SocialStatusClothDictionary(SocialStatus.Player,
+                new List<ICloth>()
+                {
+                    new Torso(27),
+                    new ArmUpper(0),
+                    new ArmLower(9),
+                    new Hand(17),
+                    new Hips(3),
+                    new Leg(8),
+                    new Hair(25)
+                }),
+                new SocialStatusClothDictionary(SocialStatus.Peasant, 
+                new List<ICloth>()
+                {
+                    new Torso(11),
+                    new ArmUpper(11),
+                    new ArmLower(0),
+                    new Hand(7),
+                    new Hips(2), 
+                    new Leg(11), 
+                    new HeadCoveringsNoHair(10)
+                }),
+                new SocialStatusClothDictionary(SocialStatus.Lord,
+                new List<ICloth>()
+                {
+                    new Torso(23),
+                    new ArmUpper(9),
+                    new ArmLower(8),
+                    new Hand(14),
+                    new Hips(16),
+                    new Leg(15),
+                    new HeadNoElements(12)
+                })
+            };
+
             All = new List<SquadComponent>();
             All.Add(Player());
             All.Add(DumpyLord());
@@ -38,7 +75,7 @@ namespace Map
             prisoners.Add(new Peasant());
             prisoners.Add(new Peasant());
             prisoners.Add(new Militia());
-            var player = new SquadComponent(new PlayerTag(), "KorvoSquad", 1000, 0, Faction.Player, SocialStatus.Peasant, new Vector3(1509, 1.12f, -230), 10, units, GetNewID());
+            var player = new SquadComponent(new PlayerTag(), "KorvoSquad", 1000, 0, Faction.Player, SocialStatus.Player, new Vector3(1509, 1.12f, -230), 10, units, GetNewID());
             player.PrisonersDictionary = prisoners;
             player.Commander = new CommanderComponent("Korvo", 30);
 
@@ -96,13 +133,13 @@ namespace Map
             return All.Max(s => s.Id) + 1;
         }
 
-        public Mesh GetMeshBySocialStatus(SocialStatus socialStatus)
+        public List<ICloth> GetClothBySocialStatus(SocialStatus socialStatus)
         {
             try
             {
-                var mesh = SocialStatusMeshDictionary.Where(x => x.SocialStatus == socialStatus).FirstOrDefault().Mesh;
-                if (mesh == null) { } // dont remove this
-                return mesh;
+                var cloth = SocialStatusClothDictionary.Where(x => x.SocialStatus == socialStatus).FirstOrDefault().Cloth;
+                if (cloth == null) { } // dont remove this
+                return cloth;
             }
             catch (System.Exception)
             {
