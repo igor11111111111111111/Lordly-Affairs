@@ -14,11 +14,14 @@ namespace Map
         [SerializeField] private ButtonUI _accept;
         [SerializeField] private ButtonUI _talk;
 
-        public void Init(EcsWorld ecsWorld)
+        public void Init(EcsWorld ecsWorld, StaticData staticData)
         {
+            staticData.DialogUI = _dialogUI;
+
             EcsEntity[] allEntity = null;
             ecsWorld.GetAllEntities(ref allEntity);
-            var playerEntity =  allEntity.First(e => e.Has<PlayerTag>());
+            var playerEntity =  allEntity.FirstOrDefault(e => e.Has<PlayerTag>());
+            if (playerEntity.IsNull()) return;
             ref var playerSquad = ref playerEntity.Get<SquadComponent>();
 
             var companyButtonUI = Instantiate(_buttonUIPrefab, _parent);
@@ -26,7 +29,7 @@ namespace Map
             companyButtonUI.Text.text = "Company";
 
             _companyUI.Init(ref playerSquad, _buttonUIPrefab, companyButtonUI.Button.onClick, _accept.Button.onClick);
-            _dialogUI.Init(_talk.Button.onClick);
+            _dialogUI.Init(_talk.Button.onClick, staticData.AllClothMesh);
 
             _accept.Button.onClick.AddListener(() => playerEntity.Get<RefreshInfoEvent>());
         }

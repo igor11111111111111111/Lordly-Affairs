@@ -11,14 +11,13 @@ namespace PlayerRedactor
         [SerializeField] TMP_InputField _squadName;
         [SerializeField] Button _next;
 
-        public ButtonClickedEvent Init(GameObject dragTextAnimation)
+        public ButtonClickedEvent Init()
         {
             SetActive(true);
             _next.onClick.AddListener(
             () =>
             {
                 SetActive(false);
-                dragTextAnimation.gameObject.SetActive(true);
             });
 
             return _next.onClick;

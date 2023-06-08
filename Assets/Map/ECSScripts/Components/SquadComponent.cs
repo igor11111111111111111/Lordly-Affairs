@@ -5,15 +5,16 @@ using UnityEngine.AI;
 
 namespace Map
 {
-    public struct SquadComponent 
+    public struct SquadComponent : ITarget
     {
         public CommanderComponent Commander;
         public string Name;
         public Squad MonoBeh;
         public Animator Animator;
         public NavMeshAgent NavMeshAgent;
-        public int Id;
-        public Transform Transform;
+        public int Id; 
+        public Transform Transform { get; set; }
+        public Vector3 Position { get => Transform.position; set { } }
         public float Speed; 
         public float Morale;
         public int Gold;

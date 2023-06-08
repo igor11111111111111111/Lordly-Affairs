@@ -7,7 +7,7 @@ namespace Map
 { 
     public class InfoSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private EcsFilter<SquadComponent, InPlayerRadiusVision, RefreshInfoEvent> _squadsContainedRefreshEvent = null;
+        private EcsFilter<SquadComponent/*, InPlayerRadiusVision*/, RefreshInfoEvent> _squadsContainedRefreshEvent = null;
         private EcsFilter<SquadComponent, InPlayerRadiusVision> _squadsInPlayerRadius = null;
         private EcsFilter<BuildingComponent> _buildings = null;
         private EcsFilter<SquadComponent, InPlayerRadiusVision, MouseEnterEvent> _squadMouseEnterEvent = null;
@@ -16,7 +16,7 @@ namespace Map
 
         public void Init()
         {
-            _sceneData.SquadFullInfoUI.SetActive(false);
+            //_sceneData.SquadFullInfoUI.SetActive(false);
         }
 
         public void Run()
@@ -36,24 +36,29 @@ namespace Map
                 ref var mouseEventComponent = ref _squadMouseEnterEvent.Get3(i);
 
                 var rectOffset = new Vector2(0, 150);
-                _sceneData.SquadFullInfoUI.RectTransform.position = mouseEventComponent.EventData.position + rectOffset;
+                
+                //_sceneData.SquadFullInfoUI.RectTransform.position = mouseEventComponent.EventData.position + rectOffset;
 
                 var commander = squadComponent.Commander;
                 string text = null;
-                text += squadComponent.Name + "\n ------";
+                _sceneData.SquadFullInfoUI.SquadName.text = squadComponent.Name;
+
                 if(commander.Name != null)
-                    text += "\n" + commander.Name + " (" + commander.CurHealth / commander.MaxHealth * 100 + "%)";
+                    text += commander.Name + " (" + commander.CurHealth / commander.MaxHealth * 100 + "%)";
+                else
+                {
+                    text += "[Without Leader]";
+                }
 
                 foreach (var keyValue in squadComponent.UnitsDictionary.Dictionary)
                 {
                     text += "\n" + keyValue.Key + " (" + keyValue.Value.Count() + ")";
                 }
-                text += "\n ------ \n";
                 foreach (var keyValue in squadComponent.PrisonersDictionary.Dictionary)
                 {
                     text += "\n" + keyValue.Key + " (" + keyValue.Value.Count() + ")";
                 }
-                _sceneData.SquadFullInfoUI.Text.text = text;
+                _sceneData.SquadFullInfoUI.FullInfo.text = text;
                 _sceneData.SquadFullInfoUI.SetActive(true);
             }
 
@@ -67,9 +72,9 @@ namespace Map
         {
             foreach (var i in _squadsContainedRefreshEvent)
             {
+                
                 ref var entity = ref _squadsContainedRefreshEvent.GetEntity(i);
                 ref var squadComponent = ref _squadsContainedRefreshEvent.Get1(i);
-
                 int units = squadComponent.UnitsDictionary.Count() + 1; // 1 = leader of squad
                 squadComponent.MonoBeh.CountUIInfo.text = units.ToString();
                 int prisoners = squadComponent.PrisonersDictionary.Count();

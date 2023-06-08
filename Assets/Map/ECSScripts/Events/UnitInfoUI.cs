@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,9 +11,9 @@ namespace Map
     public class UnitInfoUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     { 
         [SerializeField] private UnitModel _unitModel;
-        [SerializeField] private Text _name;
-        [SerializeField] private Text _salary;
-        [SerializeField] private Text _morale;
+        [SerializeField] private TextMeshProUGUI _name;
+        [SerializeField] private TextMeshProUGUI _salary;
+        [SerializeField] private TextMeshProUGUI _morale;
         [SerializeField] private GameObject _body;
         private UnitsDictionary _dictionary;
         private KeyValuePair<string, List<IUnit>> _keyValuePair;

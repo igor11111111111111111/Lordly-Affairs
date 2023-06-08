@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.UI.Button;
 
@@ -6,9 +7,9 @@ namespace Map
 {
     public class SquadInfoUI : MonoBehaviour
     {
-        [SerializeField] private Text _gold;
-        [SerializeField] private Text _salary;
-        [SerializeField] private Text _morale;
+        [SerializeField] private TextMeshProUGUI _gold;
+        [SerializeField] private TextMeshProUGUI _salary;
+        [SerializeField] private TextMeshProUGUI _morale;
         private SquadComponent _playerSquad;
 
         public void Init(ref SquadComponent playerSquad, ButtonClickedEvent onClickCompanyBtn, ButtonClickedEvent onClickDisbandBtn)

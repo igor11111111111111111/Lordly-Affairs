@@ -17,7 +17,7 @@ namespace Map
             _staticData.BuildingData.Init();
 
             foreach (var data in _staticData.BuildingData.All)
-            {
+            { 
                 EcsEntity entity = _ecsWorld.NewEntity();
                 var building = Object.Instantiate(_staticData.BuildingData.Prefab, data.StartPosition, Quaternion.identity, _sceneData.BuildingsContainer);
                 building.name = data.Name;

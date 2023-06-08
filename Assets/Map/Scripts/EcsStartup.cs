@@ -1,10 +1,9 @@
 ﻿using ECSTemplates;
 using Leopotam.Ecs;
+using StateMachine;
 using System;
-using UnityEngine;
-
 namespace Map
-{ 
+{
     public class EcsStartup 
     {
         private StaticData _staticData;
@@ -32,26 +31,21 @@ namespace Map
                 .Add(new OwnerBuildingInitSystem())
                 .Add(new CameraControllerSystem())
 
-                .Add(new InputSystem())
                 .Add(new SpeedSystem())
 
-                .Add(new LordIdleSystem())
-                .Add(new LordFindTargetSystem())
-                .Add(new LordPatrolSystem())
-                .Add(new LordPlunderVillageSystem())
-                .Add(new LordRecrutingSystem())
-                .Add(new CheckReachedTargetSystem())
-                .Add(new MoveSystem()) // after RecrutSystem
+                .Add(new PlayerMouseClickTargetSystem())
+                .Add(new StateMachineEcsConnectSystem())
                 .Add(new InfoSystem())
+                .Add(new TimeSystem())
 
                 .Inject(_staticData)
                 .Inject(_sceneData)
                 .Inject(runtimeData)
-                .OneFrame<FoundTargetEvent>()
-                .OneFrame<ReachedTargetEvent>()
                 .OneFrame<RefreshInfoEvent>()
                 .OneFrame<MouseEnterEvent>()
-                .OneFrame<MouseExitEvent>();
+                .OneFrame<MouseExitEvent>()
+                .OneFrame<MouseClickEvent>();
+            
 
             _updateSystems.Init();
 

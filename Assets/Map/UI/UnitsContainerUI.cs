@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.UI.Button;
@@ -9,7 +10,7 @@ namespace Map
     {
         private UnitInfoUI _unitInfoUI;
         [SerializeField] private Transform _parent;
-        [SerializeField] private Text _unitsCount;
+        [SerializeField] private TextMeshProUGUI _unitsCount;
         private SquadComponent _playerSquad;
         private ButtonUI _buttonUI;
 

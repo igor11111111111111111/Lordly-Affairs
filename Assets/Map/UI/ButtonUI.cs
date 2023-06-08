@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Map
@@ -6,6 +7,6 @@ namespace Map
     public class ButtonUI : MonoBehaviour
     {
         public Button Button;
-        public Text Text;
+        public TextMeshProUGUI Text;
     }
 }

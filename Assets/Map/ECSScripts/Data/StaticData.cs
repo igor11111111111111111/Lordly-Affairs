@@ -8,6 +8,7 @@ namespace Map
         public SquadData SquadData;
         public BuildingData BuildingData;
         public AllClothMesh AllClothMesh;
+        public DialogUI DialogUI;
 
         public void Init()
         {

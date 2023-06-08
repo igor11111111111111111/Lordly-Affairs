@@ -5,12 +5,11 @@ namespace Map
 {
     public class GroundTarget : ITarget
     {
-        public Vector3 Position { get => _position; set => _position = value; }
-        private Vector3 _position;
+        public Vector3 Position { get; set; }
 
-        public GroundTarget(Vector3 position)
+        public GroundTarget(Vector3 pos)
         {
-            Position = position;
+            Position = pos;
         }
     }
 } 

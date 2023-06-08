@@ -8,16 +8,13 @@ namespace PlayerRedactor
         [SerializeField] private InformationPanel _informationPanel;
         [SerializeField] private FaceRedactorPanel _faceRedactorPanel;
         [SerializeField] private UnitRotator _unitRotator;
-        [SerializeField] private GameObject _dragTextAnimation;
 
         public void Init(UnitModel unitModel)
         {
-            _dragTextAnimation.gameObject.SetActive(false);
-
-            var infPanelNext = _informationPanel.Init(_dragTextAnimation);
+            var infPanelNext = _informationPanel.Init();
             var faceRedactorPrevious = _faceRedactorPanel.Init(infPanelNext, unitModel);
             _informationPanel.Init(faceRedactorPrevious);
-            _unitRotator.Init(unitModel, _dragTextAnimation);
+            _unitRotator.Init(unitModel);
         }
     }
 }

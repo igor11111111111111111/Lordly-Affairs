@@ -6,20 +6,17 @@ namespace PlayerRedactor
 {
     public class UnitRotator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        private GameObject _dragTextAnimation;
         private PointerEventData _eventData = null;
         private UnitModel _unitModel;
 
-        public void Init(UnitModel unitModel, GameObject dragTextAnimation)
+        public void Init(UnitModel unitModel)
         {
             _unitModel = unitModel;
-            _dragTextAnimation = dragTextAnimation;
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
             _eventData = eventData;
-            _dragTextAnimation.gameObject.SetActive(false);
         }
 
         public void OnPointerUp(PointerEventData eventData)

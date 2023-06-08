@@ -5,7 +5,6 @@ namespace Map
 {
     public class UnitsDictionary
     {
-        //public Dictionary<string, List<IUnit>> Dictionary => _dictionary;
         public Dictionary<string, List<IUnit>> Dictionary = new Dictionary<string, List<IUnit>>();
          
         public void Add(IUnit unit)
@@ -53,6 +52,11 @@ namespace Map
         public int AllMorale()
         {
             return Dictionary.Values.Sum(list => list.Sum(i => i.Morale));
+        }
+
+        public List<IUnit> GetFirstValue()
+        {
+            return Dictionary.Values.First();
         }
     }
 }

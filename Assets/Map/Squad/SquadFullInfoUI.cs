@@ -5,7 +5,8 @@ namespace Map
 {
     public class SquadFullInfoUI : MonoBehaviour
     {
-        [SerializeField] public TextMeshProUGUI Text;
+        [SerializeField] public TextMeshProUGUI SquadName;
+        [SerializeField] public TextMeshProUGUI FullInfo;
         [SerializeField] public RectTransform RectTransform;
 
         public void SetActive(bool active)
